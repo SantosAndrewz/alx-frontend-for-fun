@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.toggle {
+    position: relative;
+    display: inline-block;
+}
+.toggle-cb {
+    display: none;
+}
+.toggle-label {
+    position: relative;
+    width: 70px;
+    height: 22px;
+    display: inline-block;
+    background-color: #e9e1e1;
+    margin: 20px;
+    border-radius: 30px;
+    transition: background-color 0.2s ease;
+    border: 1px solid #b8b4b4;
+
+}
+.toggle-inner {
+    position: absolute;
+    top: -18%;
+    left: -10px;
+    width: 32px;
+    height: 30px;
+    background-color: white;
+    transition: left 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    border: 1px solid #b8b4b4;
+}
+.toggle-cb:checked + .toggle-label {
+    background-color: #f7083f;
+}
+.toggle-cb:checked + .toggle-label .toggle-inner {
+    left: 40px;
+}
+.toggle-switch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.3);
+}
+.toggle-label::before,
+.toggle-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    font-size: 10px;
+    font-weight: bold;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.toggle-label::before {
+    content: 'YES';
+    left: 12px;
+    opacity: 0;
+    color: #ffffff;
+}
+.toggle-label::after {
+    content: 'NO';
+    right: 12px;
+    opacity: 0.5;
+    color: grey;
+}
+.toggle-cb:checked + .toggle-label::before {
+    opacity: 1;
+}
+.toggle-cb:checked + .toggle-label::after {
+    opacity: 0.0;
+}

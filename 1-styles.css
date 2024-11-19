@@ -1,0 +1,26 @@
+body {
+    border: 0;
+    margin: 0;
+
+}
+h2 {
+    font-size: 3rem;
+}
+a {
+    text-decoration: none;
+    color: #a62222;
+    position: relative;
+}
+a::after {
+    content: '';
+    left: 0;
+    width: 0;
+    background-color: #a62222;
+    bottom: -5px;
+    height: 7px;
+    transition: width 0.5s ease;
+    position: absolute;
+}
+a:hover::after {
+    width: 100%;
+}

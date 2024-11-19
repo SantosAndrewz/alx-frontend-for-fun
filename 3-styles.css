@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.menu {
+    position: relative;
+    width: 200px;
+    height: auto;
+    background-color: #ffffff;
+    margin: 20px;
+    overflow: visible;
+}
+.menu-open {
+    display: none;
+}
+.menu-open-button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    background-color: #a52a2a;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    margin: auto auto;
+
+}
+.menu-line {
+    position: absolute;
+    width: 40%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.1s ease-in, opacity 0.1s ease-in-out;
+}
+.menu-line-1 {
+    top: 35%;
+    transform-origin: left;
+}
+.menu-line-2 {
+    top: 50%;
+    transform-origin: center;
+}
+.menu-line-3 {
+    top: 65%;
+    transform-origin: right;
+}
+.menu-open:checked + .menu-open-button .menu-line-1 {
+    transform: rotate(20deg);
+    top: 45%;
+}
+.menu-open:checked + .menu-open-button .menu-line-2 {
+    opacity: 0;
+}
+.menu-open:checked + .menu-open-button .menu-line-3 {
+    transform: rotate(-20deg);
+    top: 45%;
+}
+.menu-item {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    background-color: #a52a2a;
+    color:#ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    margin: auto auto;
+    opacity: 0;
+    transform: scale(0) translateY(0);
+    pointer-events: none;
+    top: 40px;
+    left: 75px;
+}
+
+.menu-open:checked ~ .menu-item:nth-of-type(1) {
+    opacity: 1;
+    transform: scale(1) translateY(20px);
+    pointer-events: auto;
+}
+.menu-open:checked ~ .menu-item:nth-of-type(2) {
+    opacity: 1;
+    transform: scale(1) translateY(80px);
+    pointer-events: auto;
+}
+.menu-open:checked ~ .menu-item:nth-of-type(3) {
+    opacity: 1;
+    transform: scale(1) translateY(140px);
+    pointer-events: auto;
+}
+.menu-open:checked ~ .menu-item:nth-of-type(4) {
+    opacity: 1;
+    transform: scale(1) translateY(200px);
+    pointer-events: auto;
+}
+.menu-open:checked ~ .menu-item:nth-of-type(5) {
+    opacity: 1;
+    transform: scale(1) translateY(260px);
+    pointer-events: auto;
+}
+.menu-open:checked ~ .menu-item:hover {
+    background-color: #e7dada88;
+}
