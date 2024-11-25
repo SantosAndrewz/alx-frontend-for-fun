@@ -1,0 +1,11 @@
+/* Assigns font size to body, all its nested h1 tags and to h1 tags of class .smaller */
+body {
+    font-size: 14px;
+    h1 {
+        font-size: 16px;
+        .smaller {
+            font-size: 12px;
+        }
+
+    }
+}
