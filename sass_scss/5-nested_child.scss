@@ -1,0 +1,7 @@
+/* Assigns text color body and its first children that of class .red*/
+body {
+    color: #3D3D3D;
+    > .red {
+        color: #FF0000;
+    }
+}
