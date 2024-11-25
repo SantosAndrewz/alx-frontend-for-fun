@@ -1,0 +1,7 @@
+/* Assigns text color to button and its nested hover state  */
+button {
+    color: #FF0000;
+    &:hover {
+        color: 00FF00;
+    }
+}
