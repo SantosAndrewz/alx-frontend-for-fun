@@ -1,0 +1,6 @@
+/* Dynamically creates classes with different width */
+@for $x from 1 through 4 {
+    .col-#{$x} {
+        width: #{100% / $x};
+    }
+}
