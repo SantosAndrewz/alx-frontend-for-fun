@@ -1,0 +1,13 @@
+/* Assigns style for .info */
+.info {
+    font-size: 12px;
+}
+/* extends .info styles */
+.success {
+    @extend .info;
+    color: #00FF00;
+}
+.warning {
+    @extend .info;
+    color: #FF0000;
+}

@@ -1,0 +1,12 @@
+/* Mixin to set margin-left and margin-right */
+@mixin margin-left-right($left-right) {
+    margin-left: $left-right;
+    margin-right: $left-right;
+}
+/* Assigns style to body and its div tags using mixin */
+body {
+    @include margin-left-right(10px);
+}
+div {
+    @include margin-left-right(15px);
+}
