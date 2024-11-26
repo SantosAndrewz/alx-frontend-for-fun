@@ -10,7 +10,10 @@ import sys
 if __name__ == "__main__":
     # Checks the number of arguments entered.
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print(
+            "Usage: ./markdown2html.py README.md README.html",
+            file=sys.stderr
+        )
         exit(1)
 
     file_markdown = sys.argv[1]

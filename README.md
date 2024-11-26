@@ -1,1 +1,1 @@
-Repository for additional/optional projects for ALX Front-end specialisation
+Repository for additional/optional projects for ALX Front-end specialization
