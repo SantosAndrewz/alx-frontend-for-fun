@@ -26,11 +26,14 @@ if __name__ == "__main__":
 
     # Opens Markdown file then creates an HTML file.
     try:
-        is_in_list = False
+        is_in_ul = False
+        is_in_ol = False
+
         with open(file_markdown, 'r', encoding='utf-8') as file_md:
             with open(file_html, 'w', encoding='utf-8') as file_html_out:
                 for line in file_md:
                     line = line.strip()
+
                     if line.startswith('#'):
                         heading_level = len(line.split(' ')[0])
                         if heading_level <= 6:
@@ -39,22 +42,42 @@ if __name__ == "__main__":
                                     f"<h{heading_level}>"
                                     f"{heading_content}</h{heading_level}>\n"
                             )
-                        else:
-                            file_html_out.write(line + "\n")
 
                     elif line.startswith('- '):
-                        if not is_in_list:
+                        if is_in_ol:
+                            file_html_out.write('<ol>\n')
+                            is_in_ol = False
+
+                        if not is_in_ul:
                             file_html_out.write('<ul>\n')
-                            is_in_list = True
+                            is_in_ul = True
                         list_item = line[2:].strip()
                         file_html_out.write(f" <li>{list_item}</li>\n")
+
+                    elif line.startswith('* '):
+                        if is_in_ul:
+                            file_html_out.write('<ul>\n')
+                            is_in_ul = False
+
+                        if not is_in_ol:
+                            file_html_out.write('<ol>\n')
+                            is_in_ol = True
+                        list_item = line[2:].strip()
+                        file_html_out.write(f" <li>{list_item}</li>\n")
+
                     else:
-                        if is_in_list:
+                        if is_in_ul:
                             file_html_out.write("</ul>\n")
-                            is_in_list = False
+                            is_in_ul = False
+                        if is_in_ol:
+                            file_html_out.write("</ol>\n")
+                            is_in_ol = False
                         file_html_out.write(line + "\n")
-                if is_in_list:
+
+                if is_in_ul:
                     file_html_out.write("</ul>\n")
+                if is_in_ol:
+                    file_html_out.write("</ol>\n")
 
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
