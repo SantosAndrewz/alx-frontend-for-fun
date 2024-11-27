@@ -26,6 +26,7 @@ if __name__ == "__main__":
 
     # Opens Markdown file then creates an HTML file.
     try:
+        is_in_list = False
         with open(file_markdown, 'r', encoding='utf-8') as file_md:
             with open(file_html, 'w', encoding='utf-8') as file_html_out:
                 for line in file_md:
@@ -40,8 +41,21 @@ if __name__ == "__main__":
                             )
                         else:
                             file_html_out.write(line + "\n")
+
+                    elif line.startswith('- '):
+                        if not is_in_list:
+                            file_html_out.write('<ul>\n')
+                            is_in_list = True
+                        list_item = line[2:].strip()
+                        file_html_out.write(f" <li>{list_item}</li>\n")
                     else:
+                        if is_in_list:
+                            file_html_out.write("</ul>\n")
+                            is_in_list = False
                         file_html_out.write(line + "\n")
+                if is_in_list:
+                    file_html_out.write("</ul>\n")
+
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
         exit(1)
