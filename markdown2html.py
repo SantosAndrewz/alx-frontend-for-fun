@@ -28,6 +28,7 @@ if __name__ == "__main__":
     try:
         is_in_ul = False
         is_in_ol = False
+        current_paragraph = []
 
         with open(file_markdown, 'r', encoding='utf-8') as file_md:
             with open(file_html, 'w', encoding='utf-8') as file_html_out:
@@ -42,8 +43,9 @@ if __name__ == "__main__":
                                     f"<h{heading_level}>"
                                     f"{heading_content}</h{heading_level}>\n"
                             )
+                        continue
 
-                    elif line.startswith('- '):
+                    if line.startswith('- '):
                         if is_in_ol:
                             file_html_out.write('<ol>\n')
                             is_in_ol = False
@@ -53,8 +55,9 @@ if __name__ == "__main__":
                             is_in_ul = True
                         list_item = line[2:].strip()
                         file_html_out.write(f" <li>{list_item}</li>\n")
+                        continue
 
-                    elif line.startswith('* '):
+                    if line.startswith('* '):
                         if is_in_ul:
                             file_html_out.write('<ul>\n')
                             is_in_ul = False
@@ -64,15 +67,22 @@ if __name__ == "__main__":
                             is_in_ol = True
                         list_item = line[2:].strip()
                         file_html_out.write(f" <li>{list_item}</li>\n")
+                        continue
+
+                    if line:
+                        current_paragraph.append(line)
 
                     else:
-                        if is_in_ul:
-                            file_html_out.write("</ul>\n")
-                            is_in_ul = False
-                        if is_in_ol:
-                            file_html_out.write("</ol>\n")
-                            is_in_ol = False
-                        file_html_out.write(line + "\n")
+                        if current_paragraph:
+                            file_html_out.write("<p>\n")
+                            file_html_out.write("<br/>\n".join(current_paragraph))
+                            file_html_out.write("\n</p>\n")
+                            current_paragragh = []
+
+                if current_paragraph:
+                    file_html_out.write("<p>\n")
+                    file_html_out.write("<br/>\n".join(current_paragraph))
+                    file_html_out.write("\n</p>\n")
 
                 if is_in_ul:
                     file_html_out.write("</ul>\n")
