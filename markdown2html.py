@@ -28,7 +28,7 @@ if __name__ == "__main__":
     try:
         is_in_ul = False
         is_in_ol = False
-        current_paragraph = []
+        para_text = []
 
         with open(file_markdown, 'r', encoding='utf-8') as file_md:
             with open(file_html, 'w', encoding='utf-8') as file_html_out:
@@ -54,6 +54,8 @@ if __name__ == "__main__":
                             file_html_out.write('<ul>\n')
                             is_in_ul = True
                         list_item = line[2:].strip()
+                        list_item = list_item.replace('**', '<b>')
+                        list_item = list_item.replace("__", "<em>")
                         file_html_out.write(f" <li>{list_item}</li>\n")
                         continue
 
@@ -66,6 +68,8 @@ if __name__ == "__main__":
                             file_html_out.write('<ol>\n')
                             is_in_ol = True
                         list_item = line[2:].strip()
+                        list_item = list_item.replace('**', '<b>')
+                        list_item = list_item.replace("__", "<em>")
                         file_html_out.write(f" <li>{list_item}</li>\n")
                         continue
 
@@ -76,19 +80,20 @@ if __name__ == "__main__":
                         if is_in_ol:
                             file_html_out.write("</ol>\n")
                             is_in_ol = False
-
-                        current_paragraph.append(line)
+                        line = line.replace('**', '<b>')
+                        line = line.replace("__", "<em>")
+                        para_text.append(line)
 
                     else:
-                        if current_paragraph:
+                        if para_text:
                             file_html_out.write("<p>\n")
-                            file_html_out.write("\n<br/>\n".join(current_paragraph))
+                            file_html_out.write("\n<br/>\n".join(para_text))
                             file_html_out.write("\n</p>\n")
-                            current_paragraph = []
+                            para_text = []
 
-                if current_paragraph:
+                if para_text:
                     file_html_out.write("<p>\n")
-                    file_html_out.write("\n<br/>\n".join(current_paragraph))
+                    file_html_out.write("\n<br/>\n".join(para_text))
                     file_html_out.write("\n</p>\n")
 
                 if is_in_ul:
