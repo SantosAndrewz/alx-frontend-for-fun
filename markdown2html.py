@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
                     if line.startswith('- '):
                         if is_in_ol:
-                            file_html_out.write('<ol>\n')
+                            file_html_out.write('</ol>\n')
                             is_in_ol = False
 
                         if not is_in_ul:
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
                     if line.startswith('* '):
                         if is_in_ul:
-                            file_html_out.write('<ul>\n')
+                            file_html_out.write('</ul>\n')
                             is_in_ul = False
 
                         if not is_in_ol:
@@ -70,18 +70,25 @@ if __name__ == "__main__":
                         continue
 
                     if line:
+                        if is_in_ul:
+                            file_html_out.write("</ul>\n")
+                            is_in_ul = False
+                        if is_in_ol:
+                            file_html_out.write("</ol>\n")
+                            is_in_ol = False
+
                         current_paragraph.append(line)
 
                     else:
                         if current_paragraph:
                             file_html_out.write("<p>\n")
-                            file_html_out.write("<br/>\n".join(current_paragraph))
+                            file_html_out.write("\n<br/>\n".join(current_paragraph))
                             file_html_out.write("\n</p>\n")
-                            current_paragragh = []
+                            current_paragraph = []
 
                 if current_paragraph:
                     file_html_out.write("<p>\n")
-                    file_html_out.write("<br/>\n".join(current_paragraph))
+                    file_html_out.write("\n<br/>\n".join(current_paragraph))
                     file_html_out.write("\n</p>\n")
 
                 if is_in_ul:
