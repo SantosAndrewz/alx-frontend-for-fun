@@ -54,10 +54,10 @@ if __name__ == "__main__":
                             file_html_out.write('<ul>\n')
                             is_in_ul = True
                         list_item = line[2:].strip()
+                        list_item = list_item.replace('__', '<em>', 1)
+                        list_item = list_item.replace('__', '</em>', 1)
                         list_item = list_item.replace('**', '<b>', 1)
-                        list_item = list_item.replace("**", "</b>", 1)
-                        list_item = list_item.replace("__", "<em>", 1)
-                        list_item = list_item.replace("__", "</em>", 1)
+                        list_item = list_item.replace('**', '</b>', 1)
                         file_html_out.write(f" <li>{list_item}</li>\n")
                         continue
 
@@ -70,10 +70,10 @@ if __name__ == "__main__":
                             file_html_out.write('<ol>\n')
                             is_in_ol = True
                         list_item = line[2:].strip()
+                        list_item = list_item.replace('__', '<em>', 1)
+                        list_item = list_item.replace('__', '</em>', 1)
                         list_item = list_item.replace('**', '<b>', 1)
                         list_item = list_item.replace('**', '</b>', 1)
-                        list_item = list_item.replace("__", "<em>", 1)
-                        list_item = list_item.replace("__", "</em>", 1)
                         file_html_out.write(f" <li>{list_item}</li>\n")
                         continue
 
@@ -84,10 +84,10 @@ if __name__ == "__main__":
                         if is_in_ol:
                             file_html_out.write("</ol>\n")
                             is_in_ol = False
+                        line = line.replace('__', '<em>', 1)
+                        line = line.replace('__', '</em>', 1)
                         line = line.replace('**', '<b>', 1)
                         line = line.replace('**', '</b>', 1)
-                        line = line.replace("__", "<em>", 1)
-                        line = line.replace('__', '</em>', 1)
                         para_text.append(line)
 
                     else:
