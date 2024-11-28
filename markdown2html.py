@@ -38,10 +38,14 @@ if __name__ == "__main__":
                     if line.startswith('#'):
                         heading_level = len(line.split(' ')[0])
                         if heading_level <= 6:
-                            heading_content = line[heading_level:].strip()
+                            head_text = line[heading_level:].strip()
+                            head_text = head_text.replace('__', '<em>', 1)
+                            head_text = head_text.replace('__', '</em>', 1)
+                            head_text = head_text.replace('**', '<b>', 1)
+                            head_text = head_text.replace('**', '</b>', 1)
                             file_html_out.write(
                                     f"<h{heading_level}>"
-                                    f"{heading_content}</h{heading_level}>\n"
+                                    f"{head_text}</h{heading_level}>\n"
                             )
                         continue
 
