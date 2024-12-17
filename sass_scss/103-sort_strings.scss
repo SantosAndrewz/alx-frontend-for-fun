@@ -2,7 +2,7 @@
 $list_to_sort: john anna zoe kim felicia carrie;
 
 /* Sorts the variable $list_to_sort, prints the sorted list */
-$list_sorted: sort($list_to_sort);
+$list_sorted: sort( $list_to_sort );
 
 /* Print the sorted list */
 @debug $list_sorted;
